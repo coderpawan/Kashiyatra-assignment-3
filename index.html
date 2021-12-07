@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/v0.1.14/dist/aframe-orbit-controls-component.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="home">
+      <a-scene
+        device-orientation-permission-ui="enabled: false"
+        vr-mode-ui="enabled: false"
+      >
+        <a-assets>
+          <a-asset-item id="candle" src="scene.gltf"></a-asset-item>
+        </a-assets>
+        <svg src="ghost.svg" class="logo"></svg>
+        <a-entity>
+          <ul class="Menu" id="nav">
+            <li class="Menubar Menu_1"><a href="#home">Home</a></li>
+            <li class="Menubar Menu_2"><a href="#event">Events</a></li>
+            <li class="Menubar Menu_3"><a href="#about">About</a></li>
+          </ul>
+
+          <div class="intro">
+            <h2>Beautiful 3D Candle</h2>
+            <p>
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil id,
+              accusamus culpa deleniti neque perspiciatis nobis! Quaerat dolor
+              nobis voluptatum aliquam. Voluptatibus nisi cum facilis voluptatum
+              labore magni dolorum, neque esse praesentium molestias eveniet
+              suscipit hic ipsum adipisci quod doloremque! Distinctio beatae
+              libero quidem, tenetur nostrum commodi at odio quasi, harum odit
+              veniam a unde et itaque voluptatum dolorum sed in, maiores non
+              vitae hic velit voluptatibus! Veniam saepe recusandae voluptate
+              autem, beatae sunt doloribus! Deleniti iusto excepturi natus illo?
+            </p>
+          </div>
+          <div id="navigation">
+            <div id="menu" onclick="onClickMenu()">
+              <div id="bar1" class="bar"></div>
+              <div id="bar2" class="bar"></div>
+              <div id="bar3" class="bar"></div>
+            </div>
+          </div>
+        </a-entity>
+        <a-entity
+          id="camera"
+          camera="fov: 80; zoom: 1;"
+          position="0 2 5"
+          orbit-controls="
+            autoRotate: false;
+            target: #target;
+            enableDamping: true;
+            dampingFactor: 0.125;
+            rotateSpeed:0.25;
+            minDistance:3;
+            maxDistance:100;
+            "
+          mouse-cursor=""
+        >
+          <a-entity
+            geometry="primitive:cone; radius-bottom:1; radius-top:0"
+            scale=".33 1 .33"
+            position="0 0 0"
+            rotation="90 0 0"
+            material="color: #0099ff; transparent: true; opacity:0.5"
+          ></a-entity>
+        </a-entity>
+
+        <a-entity position="0 0.1 0" id="target">
+          <a-entity
+            gltf-model="#candle"
+            animation-mixer
+            scale="0.046 0.046 0.046"
+            position="3 -2.3 0.5"
+          ></a-entity>
+        </a-entity>
+      </a-scene>
+    </section>
+
+    <script src="script.js"></script>
+  </body>
+</html>
